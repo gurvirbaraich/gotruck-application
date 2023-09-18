@@ -10,12 +10,12 @@ import { AuthContext } from "./contexts/AuthContext";
 const Stack = createNativeStackNavigator();
 
 export default function ScreenManager() {
-  const { auth } = useContext(AuthContext);
+  const { isAutenticated } = useContext(AuthContext);
 
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {auth ? (
+        {isAutenticated ? (
           <Stack.Screen name="Home" component={HomeScreen} />
         ) : (
           <>

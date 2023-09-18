@@ -7,7 +7,12 @@ import {
   View,
 } from "react-native";
 
-export default function AuthScreen({ screenHeading, linkTag }) {
+export default function AuthScreen({
+  screenHeading,
+  linkTag,
+  onSubmit,
+  onLinkTagPress,
+}) {
   return (
     <View style={styles.screen}>
       {/* A container to hold background image in place. */}
@@ -44,11 +49,17 @@ export default function AuthScreen({ screenHeading, linkTag }) {
         </View>
 
         <View>
-          <TouchableOpacity style={styles.formButton}>
+          <TouchableOpacity
+            onPress={onSubmit ?? (() => {})}
+            style={styles.formButton}
+          >
             <Text style={styles.formButtonText}>{screenHeading}</Text>
           </TouchableOpacity>
 
-          <Text onPress={() => {}} style={styles.formActionLink}>
+          <Text
+            onPress={onLinkTagPress ?? (() => {})}
+            style={styles.formActionLink}
+          >
             {linkTag}
           </Text>
         </View>
@@ -80,13 +91,13 @@ const styles = StyleSheet.create({
   },
   formHeading: {
     fontSize: 18,
-    marginTop: 15,
+    marginTop: 10,
     textAlign: "center",
     fontFamily: "poppins",
   },
   formSubHeading: {
     marginTop: 5,
-    marginBottom: 15,
+    marginBottom: 25,
     textAlign: "center",
     fontFamily: "poppins",
   },

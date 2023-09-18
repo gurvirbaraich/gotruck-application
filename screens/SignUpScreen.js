@@ -1,5 +1,21 @@
-import AuthScreen from "./AuthScreen";
+import { useContext } from "react";
 
-export default function SignUpScreen() {
-  return <AuthScreen screenHeading={"SignUp"} linkTag={"Have an account?"} />;
+import AuthScreen from "./AuthScreen";
+import { AuthContext } from "../contexts/AuthContext";
+
+export default function SignUpScreen({ navigation }) {
+  const { logIn: signUp } = useContext(AuthContext);
+
+  const navigateToLoginScreen = function () {
+    navigation.goBack();
+  };
+
+  return (
+    <AuthScreen
+      onSubmit={signUp}
+      screenHeading={"SignUp"}
+      linkTag={"Have an account?"}
+      onLinkTagPress={navigateToLoginScreen}
+    />
+  );
 }
