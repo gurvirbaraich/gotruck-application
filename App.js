@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useFonts } from "expo-font";
+import { Platform } from "react-native";
+import { StatusBar } from "expo-status-bar";
+
+import ScreenManager from "./ScreenManager";
+import AuthProvider from "./contexts/AuthContext";
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    poppins: require("./assets/fonts/poppins.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <AuthProvider>
+      <StatusBar
+        translucent={true}
+        style={Platform.OS == "android" ? "inverted" : "dark"}
+        backgroundColor="rgba(0,0,0,0.4)"
+      />
+      <ScreenManager />
+    </AuthProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
