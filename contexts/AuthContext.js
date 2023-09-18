@@ -7,7 +7,7 @@ export const AuthContext = createContext({
 });
 
 export default function AuthProvider({ children }) {
-  const [isAutenticated, setIsAutenticated] = useState(false);
+  const [isAutenticated, setIsAutenticated] = useState(true);
 
   function logIn() {
     // TODO: Implement login logic.
